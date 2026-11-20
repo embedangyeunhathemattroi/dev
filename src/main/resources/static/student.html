@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="vi">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Đề 001 - Quản lý phòng Lab</title>
+<style>body{max-width:1000px;margin:40px auto;padding:0 20px;font:16px system-ui;color:#172554}pre{background:#f1f5f9;padding:20px;overflow:auto;border-radius:8px}a{color:#1d4ed8}</style>
+<h1>Quản lý phòng Lab — Đề 001</h1>
+<h2>Sinh viên và phiên bản triển khai</h2>
+<pre id="info">Đang tải...</pre>
+<h2>Danh sách phòng Lab (JSON)</h2>
+<p><a href="/api/labs">Mở API JSON</a> · <a href="/api/info">Mở thông tin phiên bản JSON</a></p>
+<pre id="labs">Đang tải...</pre>
+<script>
+async function show(path, id) {
+  const output = document.getElementById(id);
+  try {
+    const response = await fetch(path, {cache: 'no-store'});
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    output.textContent = JSON.stringify(await response.json(), null, 2);
+  } catch (error) { output.textContent = 'Không tải được dữ liệu: ' + error.message; }
+}
+show('/api/info', 'info');
+show('/api/labs', 'labs');
+</script>
+</html>
